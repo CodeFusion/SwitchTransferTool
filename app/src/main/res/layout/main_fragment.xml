@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="ca.codefusion.switchtransfertool.ui.main.MainViewModel" />
+        <import type="ca.codefusion.switchtransfertool.data.models.MediaFile" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="?attr/background"
+        tools:context=".ui.main.MainFragment" >
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="0dp"
+            android:layout_height="64dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/logo_bg"
+            android:src="@drawable/ic_switchtransfertool_logowhite"
+            android:contentDescription="@string/app_name"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_add"
+            android:contentDescription="@string/main_download"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            style="@style/SttTheme.Fab"
+            android:elevation="6dp"
+            app:maxImageSize="32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{ (v) -> viewModel.transferButtonPressed() }"
+            />
+
+        <TextView
+            android:id="@+id/gallery_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/gallery"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            android:theme="@style/SttTheme.MainHeader"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/gallery_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:scrollbars="vertical"
+            android:layout_marginTop="16dp"
+            android:paddingHorizontal="16dp"
+            android:scrollbarStyle="outsideInset"
+            app:layout_constraintTop_toBottomOf="@id/gallery_title"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <ImageView
+            android:id="@+id/empty_state_image"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_images"
+            android:contentDescription="@null"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/gallery_title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/empty_state_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:paddingHorizontal="32dp"
+            android:text="@string/gallery_empty_header"
+            style="@style/SttTheme.ConnectingLabel"
+            app:layout_constraintTop_toBottomOf="@id/empty_state_image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/empty_state_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/gallery_empty_desc"
+            android:paddingHorizontal="32dp"
+            style="@style/SttTheme.BodyText"
+            app:layout_constraintTop_toBottomOf="@id/empty_state_header"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            />
+
+        <ImageButton
+            android:id="@+id/settingButton"
+            android:layout_width="48dp"
+            android:layout_height="0dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="fitCenter"
+            android:background="@android:color/transparent"
+            android:theme="@style/SttTheme.Icon"
+            android:contentDescription="@string/settings"
+            android:src="@drawable/ic_settings"
+            android:padding="6dp"
+            android:onClick="@{ (v) -> viewModel.settingsClicked() }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/logo"
+            app:layout_constraintBottom_toBottomOf="@id/logo"/>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/imagePreview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="@{ viewModel.showPreview ? View.VISIBLE : View.GONE }"
+            android:elevation="10dp"
+            android:clickable="true"
+            android:background="@color/media_viewer_translucent_background"
+            tools:visibility="gone">
+
+            <com.github.chrisbanes.photoview.PhotoView
+                android:id="@+id/fullImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitCenter"
+                android:src="@{ viewModel.previewItem.contentUri }"
+                android:contentDescription="@{ viewModel.previewItem.displayName }"
+                android:layout_margin="16dp"
+                android:visibility="@{ viewModel.previewItem.type == MediaFile.MediaType.IMAGE ? View.VISIBLE : View.GONE }"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <com.google.android.exoplayer2.ui.StyledPlayerView
+                android:id="@+id/fullVideo"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="16dp"
+                android:background="@android:color/transparent"
+                android:contentDescription="@{ viewModel.previewItem.displayName }"
+                android:scaleType="fitCenter"
+                android:visibility="@{ viewModel.previewItem.type == MediaFile.MediaType.VIDEO ? View.VISIBLE : View.GONE }"
+                app:controller_layout_id="@layout/exo_player_control_view"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:show_fastforward_button="false"
+                app:show_next_button="false"
+                app:show_previous_button="false"
+                app:show_rewind_button="false"
+                tools:visibility="gone" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_arrow_back"
+                style="@style/SttTheme.TransparentImageButton"
+                android:contentDescription="@string/back"
+                android:layout_marginTop="16dp"
+                android:layout_marginStart="16dp"
+                android:onClick="@{v -> viewModel.backPressed()}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageButton
+                android:id="@+id/btn_open_external"
+                style="@style/SttTheme.TransparentImageButton"
+                android:layout_width="64dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/open_external"
+                android:scaleType="center"
+                android:src="@drawable/ic_open_in_new"
+                android:onClick="@{(v) -> viewModel.openExternalClicked()}"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_share"
+                />
+
+            <ImageButton
+                android:id="@+id/btn_share"
+                style="@style/SttTheme.TransparentImageButton"
+                android:layout_width="64dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/share"
+                android:scaleType="center"
+                android:src="@drawable/ic_share"
+                android:onClick="@{(v) -> viewModel.shareClicked()}"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/btn_trash"
+                app:layout_constraintLeft_toRightOf="@id/btn_open_external"/>
+
+            <ImageButton
+                android:id="@+id/btn_trash"
+                style="@style/SttTheme.TransparentImageButton"
+                android:layout_width="64dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/share"
+                android:scaleType="center"
+                android:src="@drawable/ic_trash"
+                android:onClick="@{(v) -> viewModel.deleteClicked()}"
+                android:layout_marginBottom="24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/btn_share"/>
+
+            <androidx.constraintlayout.widget.Group
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:constraint_referenced_ids="btn_open_external,btn_share,btn_trash"
+                android:visibility="@{ viewModel.previewItem.type == MediaFile.MediaType.IMAGE ? View.VISIBLE : View.GONE }"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/empty_state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="empty_state_image, empty_state_header, empty_state_desc" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="ca.codefusion.switchtransfertool.ui.main.MainFragment"
+        android:label="main_fragment"
+        tools:layout="@layout/main_fragment">
+        <action
+            android:id="@+id/action_mainFragment_to_scannerFragment"
+            app:destination="@id/scannerFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_downloadingFragment"
+            app:destination="@id/downloadingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/scannerFragment"
+        android:name="ca.codefusion.switchtransfertool.ui.transfer.scanner.ScannerFragment"
+        android:label="scanner_fragment"
+        tools:layout="@layout/scanner_fragment">
+        <action
+            android:id="@+id/action_scannerFragment_to_connectingFragment"
+            app:destination="@id/downloadingFragment" />
+        <action
+            android:id="@+id/action_scannerFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
+        <action
+            android:id="@+id/action_scannerFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/downloadingFragment"
+        android:name="ca.codefusion.switchtransfertool.ui.transfer.downloader.DownloadingFragment"
+        android:label="DownloadingFragment">
+        <argument
+            android:name="ssid"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="password"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="encryptionType"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <argument
+            android:name="connectionType"
+            app:argType="ca.codefusion.switchtransfertool.utils.ConnectionType" />
+        <action
+            android:id="@+id/action_downloadingFragment_to_tutorialFragment"
+            app:destination="@id/tutorialFragment" />
+        <action
+            android:id="@+id/action_downloadingFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/main_nav_graph" />
+        <action
+            android:id="@+id/action_downloadingFragment_to_scannerFragment"
+            app:destination="@id/scannerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/tutorialFragment"
+        android:name="ca.codefusion.switchtransfertool.ui.transfer.tutorial.TutorialFragment"
+        android:label="TutorialFragment">
+        <action
+            android:id="@+id/action_tutorialFragment_to_scannerFragment"
+            app:destination="@id/scannerFragment"
+            app:popUpTo="@id/mainFragment" />
+        <argument
+            android:name="connectionType"
+            app:argType="ca.codefusion.switchtransfertool.utils.ConnectionType" />
+        <action
+            android:id="@+id/action_tutorialFragment_to_downloadingFragment"
+            app:destination="@id/downloadingFragment"
+            app:popUpTo="@id/mainFragment" />
+        <action
+            android:id="@+id/action_tutorialFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+</navigation>

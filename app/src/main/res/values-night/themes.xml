@@ -1,0 +1,58 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="SttTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="android:colorBackground">@color/switch_black</item>
+        <item name="background">@color/switch_black</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorOnBackground">@color/white</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/switch_neon_blue</item>
+        <item name="colorSecondaryVariant">@color/switch_blue</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:windowBackground">@color/switch_black</item>
+        <item name="android:statusBarColor">@color/switch_black</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:textViewStyle">@style/SttTheme.TextViewStyle</item>
+        <item name="buttonRippleColor">@color/switch_neon_red</item>
+        <item name="buttonOutlineColor">@color/white</item>
+    </style>
+
+    <style name="aboutLibrariesStyle" parent="Theme.MaterialComponents">
+        <item name="colorSecondary">@color/switch_neon_blue</item>
+    </style>
+
+    <style name="settingsStyle" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="toolbarStyle">@style/toolbarStyle</item>
+        <item name="actionBarTheme">@style/toolbarStyle</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="navigationIconTint">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+        <item name="colorControlHighlight">@color/switch_red</item>
+        <item name="colorSecondary">@color/switch_red</item>
+        <item name="android:windowBackground">@color/switch_black</item>
+    </style>
+
+    <style name="SttTheme.TextViewStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="SttTheme.Icon">
+        <item name="android:tint">@color/white</item>
+        <item name="itemFillColor">@color/white</item>
+        <item name="strokeColor">@color/white</item>
+    </style>
+
+    <style name="SttTheme.OutlineButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="strokeColor">@color/white</item>
+        <item name="cornerRadius">100dp</item>
+        <item name="rippleColor">?attr/buttonRippleColor</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="SttTheme.SolidButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/switch_teal</item>
+    </style>
+
+    <style name="SttTheme.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
+        <item name="tint">@color/black</item>
+    </style>
+</resources>

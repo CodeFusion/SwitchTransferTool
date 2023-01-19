@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="ca.codefusion.switchtransfertool.ui.main.MainViewModel.GalleryItemViewModel.ImageItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/gallery_cell_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="4dp"
+            android:scaleType="centerCrop"
+            android:glideSrc="@{ viewModel.imageUri }"
+            android:contentDescription="@{ viewModel.contentDescription }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{ viewModel.contentDescription }"
+            tools:text="Image Name"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/gallery_cell_image"
+            app:layout_constraintStart_toStartOf="@id/gallery_cell_image"
+            app:layout_constraintEnd_toEndOf="@id/gallery_cell_image"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

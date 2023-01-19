@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="switch_red">#FFE60012</color>
+    <color name="switch_neon_red">#FFFF4554</color>
+    <color name="switch_red_dark">#FFab0000</color>
+    <color name="switch_red_darker">#FFA80000</color>
+    <color name="switch_blue">#FF0065B3</color>
+    <color name="switch_neon_blue">#FF00C3E3</color>
+    <color name="switch_grey">#FF989898</color>
+    <color name="switch_dark_grey">#FF414548</color>
+    <color name="switch_black">#FF2D2D2D</color>
+    <color name="switch_teal">#FF00FFC8</color>
+    <color name="switch_white">#FFEBEBEB</color>
+
+    <color name="button_grey">#FF505050</color>
+
+    <color name="video_duration_background">#AA000000</color>
+    <color name="video_duration_text">#FFFFFFFF</color>
+
+    <color name="media_viewer_translucent_background">#F0000000</color>
+
+    <color name="settings_sep_color">#99FFFFFF</color>
+
+    <color name="colorPrimary">@color/switch_red</color>
+    <color name="colorPrimaryVariant">@color/switch_red</color>
+    <color name="colorSecondary">@color/switch_blue</color>
+    <color name="colorSecondaryVariant">@color/switch_neon_blue</color>
+    <color name="colorOnSecondary">@color/white</color>
+    <color name="colorOnSecondaryVariant">@color/white</color>
+    <color name="mtrl_text_btn_text_color_selector">@color/switch_neon_blue</color>
+</resources>
