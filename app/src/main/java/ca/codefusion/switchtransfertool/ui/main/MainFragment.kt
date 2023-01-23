@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ca.codefusion.switchtransfertool.R
 import ca.codefusion.switchtransfertool.SwitchTransferToolActivity
 import ca.codefusion.switchtransfertool.data.localstorage.LocalRepository
@@ -143,6 +144,19 @@ class MainFragment : BaseFragment<MainViewModel, MainFragmentBinding>() {
         } else {
             changelog()
         }
+
+        // Shrink/expand FAB based on recyclerview scroll offset
+        binding.galleryRecyclerview.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                val vOffset = recyclerView.computeVerticalScrollOffset()
+                if (vOffset == 0 && !binding.transferButton.isExtended) {
+                    binding.transferButton.extend()
+                } else if (vOffset != 0 && binding.transferButton.isExtended) {
+                    binding.transferButton.shrink()
+                }
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
     }
 
     // Chooser for opening externally

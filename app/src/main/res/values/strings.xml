@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Switch Transfer Tool</string>
     <string name="settings">Settings</string>
-    <string name="main_download">Transfer from Switch</string>
+    <string name="main_download">Transfer</string>
     <string name="main_gallery">View Gallery</string>
     <string name="gallery">Gallery</string>
     <string name="gallery_empty_header">There\'s nothing here yet</string>

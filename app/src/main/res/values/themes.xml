@@ -106,7 +106,8 @@
         <item name="cornerRadius">2dp</item>
     </style>
 
-    <style name="SttTheme.Fab" parent="Widget.MaterialComponents.FloatingActionButton">
-        <item name="tint">@color/white</item>
+    <style name="SttTheme.Fab" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="iconTint">@color/white</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 </resources>

@@ -31,15 +31,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/transfer_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_add"
+            app:icon="@drawable/ic_add"
             android:contentDescription="@string/main_download"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             style="@style/SttTheme.Fab"
-            android:elevation="6dp"
+            android:text="@string/main_download"
             app:maxImageSize="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -66,6 +67,8 @@
             android:layout_marginTop="16dp"
             android:paddingHorizontal="16dp"
             android:scrollbarStyle="outsideInset"
+            android:paddingBottom="72dp"
+            android:clipToPadding="false"
             app:layout_constraintTop_toBottomOf="@id/gallery_title"
             app:layout_constraintBottom_toBottomOf="parent" />
 
